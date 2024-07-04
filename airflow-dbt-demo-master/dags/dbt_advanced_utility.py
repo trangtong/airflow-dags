@@ -4,6 +4,7 @@ Shows how to parse a dbt manifest file to "explode" the dbt DAG into Airflow
 Each dbt model is run as a bash command.
 """
 import sys
+import os
 sys.path.insert(0,os.path.abspath(os.path.dirname(__file__)))
 
 from pendulum import datetime
