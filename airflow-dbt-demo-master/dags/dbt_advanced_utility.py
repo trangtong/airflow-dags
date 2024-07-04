@@ -30,7 +30,7 @@ with DAG(
     doc_md=__doc__
 ) as dag:
 
-    # start_dummy = DummyOperator(task_id="start")
+    start_dummy = DummyOperator(task_id="start")
     # # We're using the dbt seed command here to populate the database for the purpose of this demo
     # dbt_seed = BashOperator(
     #     task_id="dbt_seed",
@@ -46,7 +46,7 @@ with DAG(
     #         "DBT_PORT": "{{ conn.postgres.port }}",
     #     },
     # )
-    # end_dummy = DummyOperator(task_id="end")
+    end_dummy = DummyOperator(task_id="end")
 
     # The parser parses out a dbt manifest.json file and dynamically creates tasks for "dbt run" and "dbt test"
     # commands for each individual model. It groups them into task groups which we can retrieve and use in the DAG.
@@ -59,4 +59,5 @@ with DAG(
     dbt_run_group = dag_parser.get_dbt_run_group()
     dbt_test_group = dag_parser.get_dbt_test_group()
 
-    start_dummy >> dbt_seed >> dbt_run_group >> dbt_test_group >> end_dummy
+    #start_dummy >> dbt_seed >> dbt_run_group >> dbt_test_group >> end_dummy
+    start_dummy >> dbt_run_group >> dbt_test_group >> end_dummy
