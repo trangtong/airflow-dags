@@ -4,7 +4,7 @@ import os
 import subprocess
 from airflow.operators.bash import BashOperator
 from airflow.utils.task_group import TaskGroup
-
+from airflow.hooks.base import BaseHook
 
 class DbtDagParser:
     """
