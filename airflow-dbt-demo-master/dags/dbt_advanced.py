@@ -15,11 +15,11 @@ from airflow.operators.bash import BashOperator
 DBT_PROJECT_DIR = "/opt/airflow/dags/repo/airflow-dbt-demo-master/dbt"
 
 DBT_ENV = {
-    "DBT_USER": "{{ conn.postgres.login }}",
-    "DBT_ENV_SECRET_PASSWORD": "{{ conn.postgres.password }}",
-    "DBT_HOST": "{{ conn.postgres.host }}",
-    "DBT_SCHEMA": "{{ conn.postgres.schema }}",
-    "DBT_PORT": "{{ conn.postgres.port }}",
+    "DBT_USER": "postgres",
+    "DBT_ENV_SECRET_PASSWORD": "admin",
+    "DBT_HOST": "postgresql.postgresql.svc.cluster.local",
+    "DBT_SCHEMA": "public",
+    "DBT_PORT": "5432",
 }
 
 with DAG(
